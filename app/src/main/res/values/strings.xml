@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">diabetex</string>
+    <string name="register">Deiabetex\'e Üye Değilim</string>
+    <string name="dialog_no_internet">İnternet bağlantınızı kontrol edip tekrar deneyiniz.</string>
+    <string name="dialog_ok">TAMAM</string>
+    <string name="title_activity_main">PROGRAMLARIM</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="default_notification_channel_name" translatable="true">News</string>
+    <string name="program_start_date_text">Başlangıç:</string>
+    <string name="program_finish_date_text">Bitiş:</string>
+    <string name="program_duration_text">Ortalama:</string>
+    <string name="program_go_button">BAŞLA</string>
+    <string name="program_arranger_text">Düzenleyen:</string>
+    <string name="title_activity_exercises">EGZERSİZLERİM</string>
+    <string name="exercise_completed_button">EGZERSİZ SEÇ</string>
+    <string name="exercise_tab1_header">TAMAMLANMAMIŞ</string>
+    <string name="exercise_tab2_header">TAMAMLANMIŞ</string>
+
+    <string name="title_activity_exercise_detail">ExerciseDetailActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_exercise_details">ExerciseDetailsActivity</string>
+    <string name="exDetailsSetHeader">Set</string>
+    <string name="exDetailsRepHeader">Tekrar</string>
+    <string name="exDetailsRestHeader">Dinlenme</string>
+    <string name="exDetailsDailyRepHeader">Günlük</string>
+    <string name="exDetailsWeeklyRepHeader">Haftalık</string>
+    <string name="exDetailsExpHeader">Açıklama</string>
+    <string name="dummy_text">Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+
+
+</resources>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "461965467427",
+    "firebase_url": "https://diabetex-1511511442482.firebaseio.com",
+    "project_id": "diabetex-1511511442482",
+    "storage_bucket": "diabetex-1511511442482.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461965467427:android:eb0d39b3def47572",
+        "android_client_info": {
+          "package_name": "com.example.muhendis.diabetex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461965467427-a2oflqb4v4o3k4jo9i6qefqq05f79jl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGL1uXb9pizV7rROlqnsgyXbiEUp6UFnk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461965467427-a2oflqb4v4o3k4jo9i6qefqq05f79jl8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
