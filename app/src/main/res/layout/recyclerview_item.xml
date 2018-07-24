@@ -40,20 +40,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/program_doctor_name_padding"
-                            android:text="@string/program_arranger_text"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-                        <TextView
-                            android:id="@+id/programDoctorName"
-                            android:layout_marginHorizontal="@dimen/program_arranger_margin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/program_doctor_name_padding"
-                            android:text="Doktor Adı"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
                     </LinearLayout>
                 </LinearLayout>
                 <View
@@ -117,7 +104,7 @@
                         </LinearLayout>
 
                     </LinearLayout>
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -143,43 +130,20 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/program_date_box_text_size" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="@dimen/program_complete_margin">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_assignment_turned_in_black_48dp_opacity80" />
-
-                        <ProgressBar
-                            android:id="@+id/programCompleteProgress"
-                            style="@android:style/Widget.ProgressBar.Horizontal"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:minWidth="150dp"
-                            android:progress="25"
-                            android:progressDrawable="@drawable/m_progress_bar"
-                            android:layout_marginHorizontal="@dimen/program_complete_margin"/>
-
-                        <TextView
-                            android:id="@+id/programCompletePercentage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="% 25"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:textSize="@dimen/program_date_box_text_size" />
-                    </LinearLayout>
+                    </LinearLayout>-->
                 </LinearLayout>
-                <LinearLayout
+
+                <!--<LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end">
+                    android:layout_gravity="end"
+                    >
 
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/checked"
+                        android:layout_gravity="center_horizontal"/>
                     <Button
                         style="@android:style/Widget.DeviceDefault.Button.Borderless"
                         android:id="@+id/startButton"
@@ -188,8 +152,37 @@
                         android:layout_marginBottom="@dimen/program_complete_margin"
                         android:text="@string/program_go_button"
                         android:textSize="@dimen/program_date_box_text_size"
-                        android:textColor="@color/colorPrimary"/>
-                </LinearLayout>
+                        android:textColor="@color/colorPrimary"
+                        />
+                </LinearLayout>-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:id="@+id/programDoneImage"
+                        android:visibility="gone"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/checked"
+                        android:layout_centerVertical="true"
+                        />
+                    <Button
+                        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                        android:id="@+id/startButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/program_complete_margin"
+                        android:text="@string/program_go_button"
+                        android:textSize="@dimen/program_date_box_text_size"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        />
+                </RelativeLayout>
+
             </LinearLayout>
 
         </RelativeLayout>

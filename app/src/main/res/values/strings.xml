@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">diabetex</string>
+    <string name="app_name">Diabetex</string>
     <string name="register">Deiabetex\'e Üye Değilim</string>
     <string name="dialog_no_internet">İnternet bağlantınızı kontrol edip tekrar deneyiniz.</string>
     <string name="dialog_ok">TAMAM</string>
@@ -27,6 +27,10 @@
 
     <string name="title_activity_exercise_detail">ExerciseDetailActivity</string>
     <string name="dummy_button">Dummy Button</string>
+    <string name="custom_dialog_diabetes_hint">Şeker Değeri</string>
+    <string name="custom_dialog_diastole_hint">Küçük Tansiyon</string>
+    <string name="custom_dialog_systole_hint">Büyük Tansiyon</string>
+    <string name="custom_dialog_pulse_hint">Nabız</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_exercise_details">ExerciseDetailsActivity</string>
     <string name="exDetailsSetHeader">Set</string>
@@ -38,6 +42,23 @@
     <string name="dummy_text">Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.</string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
+
+    <string name="saved_user_isloggedin_key">SavedUserIsLoggedIn</string>
+    <string name="logging_out_key">LoggingOutUser</string>
+    <string name="saved_user_uid_key">SavedUserUid</string>
+    <string name="saved_user_email_key">SavedUserEmail</string>
+    <string name="saved_user_name_key">SavedUserName</string>
+    <string name="saved_user_surname_key">SavedUserSurname</string>
+    <string name="saved_user_all_videos_downloaded_key">AllVideosDownloaded</string>
+    <string name="saved_user_needstologinagain_key">SavedUserNeedsToLoginAgain</string>
+    <string name="saved_user_file_key">SavedUserFile</string>
+
+    <string name="permanentNotificationChannelId">DiabetexPermanentNotificationChannelId</string>
+    <string name="permanentNotificationChannelName">DiabetexPermanentNotificationChannelName</string>
+
+    <string name="minimumSpeedIntentKey">minimumSpeedIntentKey</string>
+    <string name="maximumSpeedIntentKey">maximumSpeedIntentKey</string>
+
 
 
 </resources>

@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true">
 
     <include
-        layout="@layout/app_bar_exercises"
+        layout="@layout/app_bar_exercises2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

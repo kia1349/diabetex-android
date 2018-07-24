@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.muhendis.diabetex.ExerciseDetailsActivity">
+    tools:context="com.diabet.muhendis.diabetex.ExerciseDetailsActivity">
 
 
 
@@ -80,9 +80,9 @@
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:fontFamily="@font/roboto"/>
                     <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/exerciseSets"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="5"
                         android:gravity="center"
                         android:textSize="@dimen/exercise_details_info_size"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -106,7 +106,7 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="5"
+                        android:id="@+id/exerciseRep"
                         android:gravity="center"
                         android:textSize="@dimen/exercise_details_info_size"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -130,7 +130,7 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="5 sn"
+                        android:id="@+id/exerciseRest"
                         android:gravity="center"
                         android:textSize="@dimen/exercise_details_info_size"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -178,16 +178,17 @@
                             android:background="@drawable/circular_shape"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:max="100"
-                            android:progress="65"
+                            android:progress="100"
                             android:layout_gravity="center"/>
                         <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/exerciseDailyRep"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/roboto_condensed_bold"
                             android:textSize="@dimen/exercise_details_info_size"
                             style="@style/TextAppearance.AppCompat.Body1"
-                            android:text="2/3"/>
+                            />
                     </FrameLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -218,16 +219,17 @@
                             android:background="@drawable/circular_shape"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:max="100"
-                            android:progress="65"
+                            android:progress="100"
                             android:layout_gravity="center"/>
                         <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/exerciseWeeklyRep"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/roboto_condensed_bold"
                             android:textSize="@dimen/exercise_details_info_size"
                             style="@style/TextAppearance.AppCompat.Body1"
-                            android:text="2/3"/>
+                            />
                     </FrameLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -262,7 +264,6 @@
                     android:fontFamily="@font/open_sans"
                     android:inputType="textMultiLine"
                     android:paddingHorizontal="10dp"
-                    android:text="@string/dummy_text"
                     android:textColor="@color/greyDarkUp"
                     android:textSize="16dp" />
 
@@ -283,18 +284,19 @@
         android:layout_height="wrap_content"
         android:background="@drawable/background_toolbar_translucent"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/exerciseDoneButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_done_white"
+        android:paddingVertical="10dp"
+        android:text="EGZERSİZİ BİTİR"
+        android:textColor="@color/white"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        app:fabSize="normal"
-        app:borderWidth="0dp"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp"
-        app:rippleColor="@android:color/transparent"
-        android:id="@+id/floatingActionButton" />
+        android:background="@drawable/roundedbutton2"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:textSize="20dp"/>
 
 </RelativeLayout>

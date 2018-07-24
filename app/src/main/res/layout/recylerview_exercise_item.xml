@@ -19,7 +19,7 @@
             android:layout_width="180dp"
             android:layout_height="100dp"
             android:layout_marginRight="@dimen/exercise_layout_padding"
-            android:src="@drawable/sport" />
+            android:src="@drawable/ic_image_grey" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,16 +77,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/exDuration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5 dk"
-                    />
-            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
@@ -95,13 +85,13 @@
         android:layout_height="match_parent"
         >
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_margin="@dimen/exercise_header_padding"
-            android:src="@drawable/ic_check_black_24dp"
+            android:src="@drawable/verified"
             android:layout_gravity="bottom|right"
-            android:id="@+id/exerciseTickImage"
-            android:tint="@color/greyDark"/>
+            android:id="@+id/exerciseTickImage" />
     </FrameLayout>
 
 </android.support.v7.widget.CardView>
