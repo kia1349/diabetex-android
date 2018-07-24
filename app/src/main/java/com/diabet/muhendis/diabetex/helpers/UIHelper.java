@@ -133,6 +133,32 @@ public class UIHelper {
         // set dialog message
         alertDialogBuilder
                 .setMessage(message)
+                .setCancelable(true);
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
+
+    public void showSimpleAlertWithButton(String title,String message,String btnText)
+    {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+
+        // set title
+        alertDialogBuilder.setTitle(title);
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage(message)
+                .setPositiveButton(btnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
                 .setCancelable(false);
 
         // create alert dialog
