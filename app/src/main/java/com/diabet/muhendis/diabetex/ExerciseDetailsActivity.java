@@ -35,7 +35,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -103,15 +105,6 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_details);
 
-
-        /*if(isKitKatWithStepCounter(getPackageManager())){
-            mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-            mStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-            mSensorManager.registerListener(this,mStepCounter,SensorManager.SENSOR_DELAY_FASTEST);
-        }*/
-        /*mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-        mStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-        //alertSteps();*/
 
         walkingSpeeds = new ArrayList<String>();
         startTime = System.currentTimeMillis();
@@ -205,11 +198,23 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
     }
 
     private void checkAndSetupForWalkingExercise(){
-        /*
-         * Register Location serivce if it is walking exercise
-         * */
+
 
         if(mExercise.getIsWalking()){
+
+            FrameLayout exerciseImages = findViewById(R.id.exDetailsImages);
+            exerciseImages.setVisibility(View.GONE);
+
+            // Use and change set and rep texts for minimum and maximum speed to inform user
+            findViewById(R.id.exerciseDetailsRestLinearLayout).setVisibility(View.GONE);
+            ((TextView)findViewById(R.id.exerciseDetailsSetHeader)).setText(getResources().getString(R.string.exerciseDetailsActivityMinWalkingSpeedTitle));
+            ((TextView)findViewById(R.id.exerciseDetailsRepHeader)).setText(getResources().getString(R.string.exerciseDetailsActivityMaxWalkingSpeedTitle));
+            ((TextView)findViewById(R.id.exerciseSets)).setText(mExercise.getMinWalkingSpeed()+" m/sn");
+            ((TextView)findViewById(R.id.exerciseRep)).setText(mExercise.getMaxWalkingSpeed()+" m/sn");
+
+            /*
+             * Register Location services
+             * */
 
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -219,9 +224,6 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
 
 
             isLocationEnabled();
-        }
-        else{
-            Log.d(TAG,"NOT WALKING EXERCISE");
         }
     }
 
@@ -236,7 +238,6 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
 
         ImageView mTransperentImage = findViewById(R.id.exDetailsTransperentLayer);
         mTransperentImage.setMinimumHeight((int)(width/1920.0*1080));
-        Log.d(TAG,"Minimum height: "+((int)(width/1920.0*1080)));
     }
 
     public void showExerciseDone()
