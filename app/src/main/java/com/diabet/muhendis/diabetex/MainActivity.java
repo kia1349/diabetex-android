@@ -146,7 +146,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setNavBar();
-        //test();
 
     }
 
@@ -211,30 +210,6 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(getResources().getString(R.string.logging_out_key),true);
         startActivity(intent);
         this.finish();
-    }
-
-    public boolean checkAllMediaDownloaded(){
-        SharedPreferences sharedPref = getSharedPreferences(getResources().getString(R.string.saved_user_file_key), Context.MODE_PRIVATE);
-        boolean isAllMediaDownloaded = sharedPref.getBoolean(getString(R.string.saved_user_all_videos_downloaded_key),false);
-        return isAllMediaDownloaded;
-    }
-
-    public void test(){
-
-        String imageFilePath = Environment.getExternalStorageDirectory()
-                + File.separator + ".diabetex/.images/135_7.png";
-        File imageFile = new File(imageFilePath);
-
-        if(imageFile.exists())
-        {
-
-            if(imageFile.delete())
-                Log.d(TAG,"135_7 file exists and deleted");
-            else
-                Log.d(TAG,"135_7 file exists and NOT deleted");
-        }
-
-
     }
 
 
