@@ -24,7 +24,7 @@ import java.util.List;
 
 public class LocationService extends Service implements LocationListener {
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
-    private static final long MINIMUM_TIME_BETWEEN_UPDATES = 2000;
+    private static final long MINIMUM_TIME_BETWEEN_UPDATES = 20000;
     private static LocationService mLocationService;
     Location startLocation;
     LocationManager locationManager;
