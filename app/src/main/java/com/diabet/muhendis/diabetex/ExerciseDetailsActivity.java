@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
@@ -30,10 +31,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -50,32 +53,18 @@ import com.diabet.muhendis.diabetex.model.ProgramExerciseFirebaseDb;
 import com.diabet.muhendis.diabetex.model.StatisticsExerciseFirebaseDb;
 import com.diabet.muhendis.diabetex.model.StatisticsProgramFirebaseDb;
 import com.diabet.muhendis.diabetex.services.LocationService;
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
-import com.google.android.exoplayer2.trackselection.TrackSelector;
-import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
-import com.google.android.exoplayer2.upstream.BandwidthMeter;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.util.Util;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class ExerciseDetailsActivity extends AppCompatActivity implements SensorEventListener{
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 2000;
 
+    Chronometer chronometer;
     ImageView mVideoPlay;
     TextView mHeader,mInstruction,mSet,mRep,mRest,mDailyRep,mWeeklyRep;
     String eid,pid,videoLink,photoLink;
@@ -98,6 +87,7 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
     List<String> walkingSpeeds;
     Location startLocation,endLocation;
     Intent startIntent;
+    Boolean isStartedWalking=false;
 
     private final String TAG = "ExerciseDetailsActivity";
     @Override
@@ -123,9 +113,6 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
         }
 
         mExercise = mLocalDbHelper.getExercise(pid,eid);
-        Log.d(TAG,"EXERCISE MIN SPEED: "+mExercise.getMinWalkingSpeed());
-
-        Log.d(TAG,"EXERCISE EID: "+eid);
 
         mHeader = findViewById(R.id.exDetailsHeader);
         mInstruction = findViewById(R.id.exDetailsExpEditText);
@@ -137,8 +124,23 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
         mDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                elapsedTime = (System.currentTimeMillis()-startTime)/1000;
-                showExerciseDone();
+                if(mExercise.getIsWalking() && !isStartedWalking){
+                    mUIHelper.showSimpleAlertWithButton(getResources().getString(R.string.userCouldCloseScreenTitle),
+                            getResources().getString(R.string.userCouldCloseScreenMessage),
+                            getResources().getString(R.string.userCouldCloseScreenButtonTitle));
+                    isStartedWalking=true;
+                    mDoneButton.setText(getResources().getString(R.string.exerciseDetailsStopExerciseTitle));
+                    mDoneButton.setBackgroundColor(getResources().getColor(R.color.redDark));
+                    chronometer.setBase(SystemClock.elapsedRealtime());
+                    chronometer.start();
+                }
+                else{
+                    if(chronometer!=null)
+                        chronometer.stop();
+                    elapsedTime = (System.currentTimeMillis()-startTime)/1000;
+                    showExerciseDone();
+                }
+
             }
         });
 
@@ -201,6 +203,8 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
 
 
         if(mExercise.getIsWalking()){
+            setChronometer();
+            mDoneButton.setText(getResources().getString(R.string.exerciseDetailsStartExerciseTitle));
 
             FrameLayout exerciseImages = findViewById(R.id.exDetailsImages);
             exerciseImages.setVisibility(View.GONE);
@@ -209,8 +213,8 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
             findViewById(R.id.exerciseDetailsRestLinearLayout).setVisibility(View.GONE);
             ((TextView)findViewById(R.id.exerciseDetailsSetHeader)).setText(getResources().getString(R.string.exerciseDetailsActivityMinWalkingSpeedTitle));
             ((TextView)findViewById(R.id.exerciseDetailsRepHeader)).setText(getResources().getString(R.string.exerciseDetailsActivityMaxWalkingSpeedTitle));
-            ((TextView)findViewById(R.id.exerciseSets)).setText(mExercise.getMinWalkingSpeed()+" m/sn");
-            ((TextView)findViewById(R.id.exerciseRep)).setText(mExercise.getMaxWalkingSpeed()+" m/sn");
+            ((TextView)findViewById(R.id.exerciseSets)).setText(mExercise.getMinWalkingSpeed()+" km/sa");
+            ((TextView)findViewById(R.id.exerciseRep)).setText(mExercise.getMaxWalkingSpeed()+" km/sa");
 
             /*
              * Register Location services
@@ -225,6 +229,18 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
 
             isLocationEnabled();
         }
+    }
+    private void setChronometer(){
+        chronometer = new Chronometer(this);
+        chronometer.setTextSize(64);
+
+        chronometer.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.gravity = Gravity.CENTER;
+        params.setMargins(0,20,0,20);
+        chronometer.setLayoutParams(params);
+        LinearLayout mainLL = findViewById(R.id.exerciseDetailsMainLinearLayout);
+        mainLL.addView(chronometer,1);
     }
 
     private void setDisplayOptions()
@@ -296,6 +312,8 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
                 .setNegativeButton("VAZGEÇ",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
                         dialog.cancel();
+                        if(chronometer!=null)
+                            chronometer.start();
                     }
                 })
         ;
@@ -460,6 +478,7 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
         }
 
     }
+
 
 
 
