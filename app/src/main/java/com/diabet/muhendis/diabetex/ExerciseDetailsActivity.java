@@ -284,8 +284,10 @@ public class ExerciseDetailsActivity extends AppCompatActivity implements Sensor
                             mUIHelper.showSimpleAlertWithButton(getResources().getString(R.string.spentTimeForExerciseSoLowTitle),getResources().getString(R.string.spentTimeForExerciseSoLowMessage),getResources().getString(R.string.spentTimeForExerciseSoLowBtnText));
                         }
                         else{
-                            walkingSpeeds = LocationService.getInstance().walkingSpeeds;
-                            walkedDistance = LocationService.getInstance().walkedDistance;
+                            if(mExercise.getIsWalking()){
+                                walkingSpeeds = LocationService.getInstance().walkingSpeeds;
+                                walkedDistance = LocationService.getInstance().walkedDistance;
+                            }
 
                             StatisticsExerciseFirebaseDb statisticsExerciseFirebaseDb = new StatisticsExerciseFirebaseDb(getCurrentDate(), mExercise.getEid(),mExercise.getPid(),mExercise.getUid(),(int)elapsedTime,stepCounter,walkingSpeeds,mExercise.getIsWalking(),walkedDistance);
                             mLocalDbHelper.insertStatisticsExercise(statisticsExerciseFirebaseDb,mFirebaseDbHelper);

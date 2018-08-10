@@ -43,7 +43,6 @@ public class LocationService extends Service implements LocationListener {
     @SuppressLint("MissingPermission")
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG,"LOCATİONLİSTENER ONSTARTCOMMAND");
         minSpeed = intent.getIntExtra(getResources().getString(R.string.minimumSpeedIntentKey),0);
         maxSpeed = intent.getIntExtra(getResources().getString(R.string.maximumSpeedIntentKey),0);
 
@@ -117,7 +116,6 @@ public class LocationService extends Service implements LocationListener {
         super.onDestroy();
         mUIHelper.cancelPermanentSpeedNotification();
         locationManager.removeUpdates(this);
-        Log.d(TAG,"LocationListener onDestroy");
     }
 
     @Override
