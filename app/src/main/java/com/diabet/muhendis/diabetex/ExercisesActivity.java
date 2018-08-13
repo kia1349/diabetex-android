@@ -64,7 +64,7 @@ public class ExercisesActivity extends AppCompatActivity {
     private LocalDBHelper mLocalDBHelper;
     private UIHelper mUIHelper;
     private FirebaseDBHelper mFirebaseDbHelper;
-    private final int diabetesMin=80,diabetesMax=350,systoleMin=100,systoleMax=180,diastoleMin=80,diastoleMax=350,pulseMin=55,pulseMax=140;
+    private final int diabetesMin=80,diabetesMax=400,systoleMin=90,systoleMax=180,diastoleMin=50,diastoleMax=150,pulseMin=50,pulseMax=145;
 
     private final String TAG = "ExercisesActivity";
 
