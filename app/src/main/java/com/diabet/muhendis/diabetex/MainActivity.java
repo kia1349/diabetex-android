@@ -33,8 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
 import com.diabet.muhendis.diabetex.adapters.ProgramRecylerViewAdapter;
 import com.diabet.muhendis.diabetex.db.DiabetWatchDbHelper;
 import com.diabet.muhendis.diabetex.helpers.AlarmManagerHelper;
@@ -47,12 +45,6 @@ import com.diabet.muhendis.diabetex.model.StatisticsProgramFirebaseDb;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,7 +52,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import io.fabric.sdk.android.services.common.Crash;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

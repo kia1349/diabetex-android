@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.crashlytics.android.Crashlytics;
 import com.diabet.muhendis.diabetex.R;
 
 import java.io.File;
@@ -145,7 +144,6 @@ public class ProgressBack extends AsyncTask<String[],String[],String> {
             return true;
         } catch (Exception e) {
             Log.d("Error....", e.toString());
-            Crashlytics.getInstance().crash();
             return false;
         }
 
