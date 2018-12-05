@@ -73,5 +73,15 @@
             android:textColor="@color/colorPrimary"
             android:textSize="16dp" />
 
+        <Button
+            android:id="@+id/terms_user_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="Kullanıcı Sözleşmesi"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 </ScrollView>
