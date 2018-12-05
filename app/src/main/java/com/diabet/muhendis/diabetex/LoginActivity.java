@@ -20,6 +20,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     private UIHelper mUIHelper;
     private final String TAG = "LoginActivity";
     private String fcmBody,fcmTitle,fcmMessageId;
+    private Button termsUserLinkButton;
 
 
 
@@ -111,6 +113,15 @@ public class LoginActivity extends AppCompatActivity {
         // Get Reference to variables
         etEmail = findViewById(R.id.emailEditText);
         etPassword = findViewById(R.id.passwordEditText);
+        termsUserLinkButton = findViewById(R.id.terms_user_link);
+        termsUserLinkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String termServiceLink = getResources().getString(R.string.terms_user_link);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(termServiceLink));
+                startActivity(browserIntent);
+            }
+        });
 
     }
 
