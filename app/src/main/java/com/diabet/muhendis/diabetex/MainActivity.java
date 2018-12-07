@@ -15,7 +15,10 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -97,25 +100,6 @@ public class MainActivity extends AppCompatActivity
         mAllPrograms = mLocalDBHelper.getAllPrograms();
         mFirebaseDBHelper.syncLocalStatisticsWithFirebase(getUid());
 
-        /*
-         * Add a recylerview to show all exercises in the main screen
-         */
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        if (mAllPrograms.length != 0) {
-            findViewById(R.id.noProgramLinearLayout).setVisibility(View.GONE);
-        }
-        else{
-            findViewById(R.id.noProgramLinearLayout).setVisibility(View.VISIBLE);
-        }
-        adapter = new ProgramRecylerViewAdapter(this,mAllPrograms);
-        adapter.setLocalDbHelper(mLocalDBHelper);
-        adapter.setMainActivity(this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemViewCacheSize(30);
-        recyclerView.setAdapter(adapter);
-
-        syncDataWithFirebase();
-        removeCompletedProgramsFromDB();
 
         /*
          * Set your own toolbar
@@ -138,10 +122,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         setNavBar();
 
-    }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, ProgramActivity.newInstance()).commit();
 
-    public void syncDataWithFirebase(){
-        mFirebaseDBHelper.syncDataWithLocalDB(this,adapter);
     }
 
 
@@ -269,18 +252,35 @@ public class MainActivity extends AppCompatActivity
         return strDate;
     }
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
+        Fragment fragment = null;
+        Class fragmentClass = ProgramActivity.class;
+
         int id = item.getItemId();
 
         if (id == R.id.nav_program) {
-            // Handle the camera action
-        }  else if (id == R.id.nav_exit) {
+            fragmentClass = ProgramActivity.class;
+        }
+        else if(id == R.id.nav_statistics){
+            fragmentClass = StatisticsActivity.class;
+        }
+        else if (id == R.id.nav_exit) {
             logout_user();
         }
+
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -294,42 +294,6 @@ public class MainActivity extends AppCompatActivity
             adapter.notifyDataSetChanged();
         }
         mUIHelper.syncMediaFiles(mLocalDBHelper,this);
-    }
-
-    // Removing from firebase will trigger to remove local db automatically
-    // So just remove from firebase
-
-    public void removeCompletedProgramsFromDB(){
-        List<String> pidsToRemove = new ArrayList<String>();
-
-        for (ProgramFirebaseDb program :
-                mAllPrograms) {
-            SimpleDateFormat mdformat = new SimpleDateFormat("dd-MM-yyyy");
-            try {
-                Date date = mdformat.parse(program.getFinishDate());
-                if(System.currentTimeMillis()>date.getTime()){
-                    mLocalDBHelper.deleteProgram(program.getPid());
-                    ProgramFirebaseDb[] ap = mLocalDBHelper.getAllPrograms();
-                    if (ap.length != 0) {
-                        findViewById(R.id.noProgramLinearLayout).setVisibility(View.GONE);
-                    }
-                    else{
-                        findViewById(R.id.noProgramLinearLayout).setVisibility(View.VISIBLE);
-                    }
-                    adapter.setAdapter(ap);
-                    pidsToRemove.add(program.getPid());
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        if(pidsToRemove.size()>0)
-        {
-            mFirebaseDBHelper.removeCompletedPrograms(pidsToRemove);
-        }
-
     }
 
     public void showNotificationAlertFromFcm(String title,String message)
