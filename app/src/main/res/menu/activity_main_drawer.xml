@@ -11,6 +11,10 @@
             android:icon="@drawable/ic_menu_assignments"
             android:title="Programlar" />
         <item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/ic_chart"
+            android:title="İstatisliklerim" />
+        <item
             android:id="@+id/nav_exit"
             android:icon="@drawable/ic_menu_exit"
             android:title="ÇIKIŞ" />
